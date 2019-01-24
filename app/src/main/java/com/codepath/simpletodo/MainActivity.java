@@ -19,12 +19,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<String>items = new ArrayList<>(FileUtils.readLines(getDataFile(), Charset.defaultCharset()));
+    ArrayList<String>items;
     ArrayAdapter<String> itemsAdapter;
     ListView lvItems;
 
-    public MainActivity() throws IOException {
-    }
 
 
     @Override
@@ -33,10 +31,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         readItems();
-        itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
-        lvItems = findViewById(R.id.lvItems);
+        itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        lvItems = (ListView) findViewById(R.id.lvItems);
         lvItems.setAdapter(itemsAdapter);
 
+        //mock data
         //items.add("First item");
         //items.add("Second item");
 
